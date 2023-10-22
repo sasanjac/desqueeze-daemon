@@ -37,10 +37,11 @@ class Daemon:
 
     def desqueeze_file(self, *, filepath: pathlib.Path, image_metadata: dict[str, t.Any]) -> None:
         dng_image_path = self.convert_to_dng(filepath=filepath)
-
         with wand.image.Image(filename=dng_image_path) as image:
             self.set_dng_anamorphic_ratio(image_path=dng_image_path, image_metadata=image_metadata)
             self.add_thumbnails(image=image, image_path=dng_image_path)
+
+        filepath.unlink()
 
     def set_dng_anamorphic_ratio(self, *, image_path: pathlib.Path, image_metadata: dict[str, t.Any]) -> None:
         args = [
