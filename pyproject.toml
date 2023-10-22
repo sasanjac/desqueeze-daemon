@@ -1,0 +1,78 @@
+[project]
+  authors = [
+    { name = "Sasan Jacob Rasti", email = "sasan.accounts@icloud.com" },
+  ]
+  dependencies = ["loguru", "schedule", "wand"]
+  description = ""
+  dynamic = ["classifiers"]
+  license = { text = "MIT" }
+  name = "desqueeze-daemon"
+  requires-python = ">=3.11"
+  version = "0.1.0"
+
+  [project.urls]
+    homepage = "https://github.com/sasanjac/desqueeze-daemon"
+
+  [project.optional-dependencies]
+
+[build-system]
+  build-backend = "pdm.pep517.api"
+  requires      = ["pdm-pep517"]
+
+[tool]
+
+  [tool.pdm]
+
+    [tool.pdm.dev-dependencies]
+      formatting = ["black"]
+      linter     = ["ruff"]
+      protoyping = ["ipykernel"]
+      typing     = ["mypy", "types-requests"]
+
+[tool.ruff]
+  extend-exclude = ["tests"]
+  ignore = [
+    "ANN002",
+    "ANN003",
+    "ANN101",
+    "ANN102",
+    "BLE001",
+    "C901",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "D107",
+    "D202",
+    "D203",
+    "D401",
+    "E402",
+    "E501",
+    "S603",
+  ]
+  line-length = 120
+  select = ["ALL"]
+
+  [tool.ruff.isort]
+    force-single-line = true
+
+  [tool.ruff.pydocstyle]
+    convention = "pep257"
+
+[tool.black]
+  line_length = 120
+
+[tool.mypy]
+  follow_imports         = "normal"
+  ignore_missing_imports = true
+  namespace_packages     = true
+  strict_optional        = true
+  warn_no_return         = true
+  warn_redundant_casts   = true
+  warn_unused_ignores    = true
+
+[tool.pyright]
+  exclude = ["**/__pycache__"]
